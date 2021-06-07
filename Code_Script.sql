@@ -159,6 +159,7 @@ on sal.Salary=Money(s.salary);
 --where s.Emp_ID='E17054'
 --Limit 10;
 
+-- Optional exercise 1
 --Create a view that returns all employee attributes
 
 Create View Employee_View as
@@ -189,7 +190,7 @@ on l.Location_ID=st.Location_ID
 Join Education as ed
 on e.educaion_id=ed.Education_ID;
 
-
+-- Optional exercise 2
 --Create a view for procedure
 
 Create View Employee_View_P as
