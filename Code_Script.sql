@@ -207,9 +207,7 @@ on eh.Job_ID=j.Job_ID
 Join Department as d
 on eh.Department_ID=d.Department_ID;
 
-
 -- Create a Function named emp_jobs
-
 CREATE OR REPLACE FUNCTION emp_jobs(Emp_Name varchar(8)) 
   RETURNS TABLE (Employee_Name varchar(50),
                  Job_Title varchar(100), 
@@ -227,9 +225,8 @@ $func$
    from Employee_View as ev
     where ev.Employee_Name =Emp_Name;
   END;
-$func$  LANGUAGE plpgsql;
-    
-SELECT * from emp_jobs('Eric  Baxter');    
+$func$  LANGUAGE plpgsql;    
+SELECT * from emp_jobs('Toni Lembeck');    
 
 -- Optional exercise 3
 -- create user
