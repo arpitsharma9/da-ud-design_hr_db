@@ -70,8 +70,9 @@ Job_ID int references Job(Job_ID),
 Salary_ID int references Salary(Salary_ID),
 Start_Date DATE,
 End_Date DATE,
---primary key (Employee_ID, Manager_ID, Address_ID,Department_ID,Job_ID,Salary_ID));
 primary key (Employee_ID,Start_Date));
+
+--primary key (Employee_ID, Manager_ID, Address_ID,Department_ID,Job_ID,Salary_ID));
 
 -- Insert data into these tables from staging tables
 
@@ -197,12 +198,8 @@ Create View Employee_View_P as
 -- Query for creating view
 Select e.Employee_Name ,
 j.Job_Title ,d.Department_Name ,
-s.Manager ,eh.Start_date ,eh.End_Date 
-from proj_stg as s
-left join proj_stg as m
-on (m.Emp_NM=s.manager) 
-Join Employee as e
-on s.Emp_ID=e.Employee_ID
+(Select Employee_Name from Employee as e where e.Employee_ID=eh.Manager_ID) as Manager_Name ,eh.Start_date ,eh.End_Date 
+from Employee as e
 Join Employee_History as eh
 on e.Employee_ID=eh.Employee_ID
 Join Job as j
@@ -243,4 +240,6 @@ GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO NonMgr;
 
 -- Revoke access from salary table
 REVOKE All ON Salary FROM NonMgr;
+
+
 
